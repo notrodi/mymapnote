@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { createValueAccessor } from '../../../../lib';
 
@@ -9,17 +9,17 @@ import { createValueAccessor } from '../../../../lib';
   providers: [ createValueAccessor(() => RatingComponent) ]
 })
 export class RatingComponent implements OnInit, ControlValueAccessor {
-  public stars: undefined[] = new Array(5);
+  public stars: boolean[] = new Array(5);
 
   @Input()
   public set starCounter (value: number) {
-    this.stars = new Array(value);
+    this.stars = new Array(value).fill(false);
   }
 
   @Input()
   public readonly: boolean = false;
 
-  constructor() { }
+  constructor(private changeDetection: ChangeDetectorRef) { }
   
   ngOnInit(): void {
   }
@@ -43,7 +43,13 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   }
 
   public writeValue(ratingCount: number): void {
-    
-  }
+    const newStars: boolean[] = new Array(this.stars.length).fill(false);
 
+    for (let i = 0; i < ratingCount; i++ ) {
+      newStars[i] = true;
+    }
+
+    this.stars = newStars
+    this.changeDetection.detectChanges();
+  }
 }
