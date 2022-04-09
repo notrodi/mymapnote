@@ -1,4 +1,4 @@
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceEditComponent implements OnInit {
 
-  public rating: FormControl = new FormControl(0, Validators.min(1));
+  public form: FormGroup = new FormGroup({
+    name: new FormControl(),
+    rating: new FormControl(0, Validators.min(1)),
+    description: new FormControl(),
+    tags: new FormControl([ "Паб", "Бар", "Гастропаб", "Ресторан" ]),
+    photos: new FormControl()
+  })
 
-  constructor() { }
+  constructor() {
+    console.log(this.form.get('rating'));
+  }
 
   ngOnInit(): void {
   }

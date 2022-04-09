@@ -1,3 +1,4 @@
+import { TagsModule } from './../shared/components/tags/tags.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlaceEditComponent } from './components/place-edit/place-edit.component';
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RatingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TagsModule
   ]
 })
 export class PlaceEditDialogModule { }
