@@ -15,6 +15,7 @@ import { Component, OnInit, Input, ChangeDetectorRef, forwardRef } from '@angula
 })
 export class RatingComponent implements OnInit, ControlValueAccessor {
   public stars: boolean[] = [false, false, false, false, false];
+  public isDisabled: boolean = false;
 
   @Input()
   public readonly: boolean = false;
@@ -39,6 +40,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   }
 
   public setDisabledState?(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
   }
 
   public writeValue(ratingCount: number) {
