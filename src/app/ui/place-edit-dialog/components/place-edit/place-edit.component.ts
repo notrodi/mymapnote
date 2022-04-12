@@ -11,7 +11,7 @@ export class PlaceEditComponent implements OnInit {
   public form: FormGroup = new FormGroup({
     name: new FormControl(),
     rating: new FormControl(3, Validators.min(1)),
-    description: new FormControl(),
+    description: new FormControl('# Заголовок 1 \n\n## Заголовок 2'),
     tags: new FormControl([ "Паб", "Бар", "Гастропаб", "Ресторан" ]),
     photos: new FormControl()
   })
